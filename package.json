@@ -1,13 +1,13 @@
 {
-  "name": "shopify-next-app",
-  "description": "An Ecommerce built with NextJS Typescript. Backend using Shopify",
+  "name": "fullstack-next-app",
+  "description": "A FullStack Ecommerce built with NextJS Typescript MongoDB. All In One!",
   "keywords": [
     "NextJS",
-    "Shopify",
     "TypeScript",
     "Husky",
     "Docker",
     "TailwindCSS",
+    "Redux-Toolkit",
     "SEO"
   ],
   "version": "0.1.0",
