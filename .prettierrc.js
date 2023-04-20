@@ -7,7 +7,7 @@ const config = {
   trailingComma: 'none',
   arrowParens: 'always',
   endOfLine: 'auto',
-  importOrder: [],
+  importOrder: ['~/constants/*', '~/store/*', '~/types/(.)*'],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true
 }
