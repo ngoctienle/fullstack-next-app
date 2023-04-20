@@ -1,0 +1,64 @@
+{
+  "name": "shopify-next-app",
+  "description": "An Ecommerce built with NextJS Typescript. Backend using Shopify",
+  "keywords": [
+    "NextJS",
+    "Shopify",
+    "TypeScript",
+    "Husky",
+    "Docker",
+    "TailwindCSS",
+    "SEO"
+  ],
+  "version": "0.1.0",
+  "author": "ngoctienle<hi@bravemind.io>",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "postinstall": "husky install",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier -c \"./.prettierrc.js\" -w",
+    "commit": "git cz"
+  },
+  "dependencies": {
+    "next": "13.3.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/node": "18.15.12",
+    "@types/react": "18.0.37",
+    "@types/react-dom": "18.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "autoprefixer": "10.4.14",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "8.38.0",
+    "eslint-config-next": "13.3.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
+    "postcss": "8.4.23",
+    "prettier": "^2.8.7",
+    "prettier-plugin-tailwindcss": "^0.2.7",
+    "tailwind-merge": "^1.12.0",
+    "tailwindcss": "3.3.1",
+    "typescript": "5.0.4"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,mdx,md,css}": [
+      "yarn format \"./src/**/*.{js,jsx,ts,tsx,mdx,md,css}\""
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
