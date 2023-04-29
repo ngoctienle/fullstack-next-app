@@ -4,6 +4,7 @@ import { combineReducers } from 'redux'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk'
+
 import { modeEnv } from '~/constants/config.constant'
 
 const reducers = combineReducers({
