@@ -5,15 +5,19 @@ import { textVariants } from '~/configs/variants'
 
 import { cn } from '~/libs/utils'
 
-interface ITextProps extends HTMLAttributes<HTMLParagraphElement>, VariantProps<typeof textVariants> {}
+interface ITextProps
+  extends HTMLAttributes<HTMLParagraphElement>,
+    VariantProps<typeof textVariants> {}
 
-const Text = forwardRef<HTMLParagraphElement, ITextProps>(({ className, size, children, ...props }, ref) => {
-  return (
-    <p ref={ref} {...props} className={cn(textVariants({ size, className }))}>
-      {children}
-    </p>
-  )
-})
+const Text = forwardRef<HTMLParagraphElement, ITextProps>(
+  ({ className, size, children, ...props }, ref) => {
+    return (
+      <p ref={ref} {...props} className={cn(textVariants({ size, className }))}>
+        {children}
+      </p>
+    )
+  }
+)
 
 Text.displayName = 'Text'
 
