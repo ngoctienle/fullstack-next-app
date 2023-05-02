@@ -1,5 +1,25 @@
 @tailwind base;
 @tailwind components;
+
+@font-face {
+  font-family: 'NeuePlak';
+  src: url('/public/fonts/SVN-NeuePlakRegular.otf') format('otf');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'NeuePlak-Bold';
+  src: url('/public/fonts/SVN-NeuePlakBold.otf') format('otf');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'NeuePlak-WideBold';
+  src: url('/public/fonts/SVN-NeuePlakWideBold.otf') format('otf');
+  font-weight: 700;
+  font-display: swap;
+}
+
 @tailwind utilities;
 
 @layer {
@@ -21,6 +41,6 @@
   }
   html,
   body {
-    @apply overflow-hidden;
+    @apply overflow-hidden font-sans;
   }
 }

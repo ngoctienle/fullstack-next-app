@@ -7,6 +7,11 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['NeuePlak', 'sans-serif'],
+        sansBold: ['NeuePlak-Bold', 'sans-serif'],
+        sansWide: ['NeuePlak-WideBold', 'sans-serif']
+      },
       colors: {
         blue: 'var(--blue-color)',
         'blue-dark': 'var(--dark-blue-color)',
@@ -26,6 +31,11 @@ module.exports = {
       },
       transitionTimingFunction: {
         cubic: 'var(--cubic-bezier)'
+      },
+      screens: {
+        '@992': '992px',
+        '@768': '768px',
+        '@520': '520px'
       }
     }
   },

@@ -63,9 +63,9 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>(
             />
           )}
         </div>
-        <span className={cn('text-xs text-error min-h-[10px]', classNameError)}>
+        <p className={cn('text-xs text-error min-h-[1rem] my-[3px]', classNameError)}>
           {errorMessage}
-        </span>
+        </p>
       </>
     )
   }

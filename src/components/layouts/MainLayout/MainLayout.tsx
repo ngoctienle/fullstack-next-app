@@ -1,5 +1,3 @@
-import { Roboto } from 'next/font/google'
-
 import { cn } from '~/libs/utils'
 
 import Footer from '~/components/frontend/Footer'
@@ -9,17 +7,9 @@ interface IMainLayout {
   children: React.ReactNode
 }
 
-const roboto = Roboto({
-  weight: '400',
-  subsets: ['latin']
-})
-
 export default function MainLayout({ children }: IMainLayout) {
   return (
-    <section
-      className={cn(roboto.className, 'h-screen max-w-[100vw] overflow-x-visible')}
-      id='page-layout'
-    >
+    <section className={cn('h-screen max-w-[100vw] overflow-x-visible font-sans')} id='page-layout'>
       <Header />
       {children}
       <Footer />

@@ -6,7 +6,14 @@ interface InterCImage extends ImageProps {
   alt: string
 }
 
-export default function CImage({ src, alt, width, height, display = 'intrinsic', ...props }: InterCImage) {
+export default function CImage({
+  src,
+  alt,
+  width,
+  height,
+  display = 'intrinsic',
+  ...props
+}: InterCImage) {
   if (display === 'responsive') {
     return (
       <Image
@@ -22,7 +29,7 @@ export default function CImage({ src, alt, width, height, display = 'intrinsic',
     )
   }
 
-  if (Number(width) < 40 && Number(height) < 40) {
+  if (Number(width) < 40 || Number(height) < 40) {
     return <Image src={src} alt={alt} title={alt} width={width} height={height} {...props} />
   }
   return (

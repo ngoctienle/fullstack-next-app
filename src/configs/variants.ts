@@ -5,7 +5,7 @@ export const textVariants = cva('max-w-prose text-slate-700 dark:text-slate-300 
     size: {
       default: 'text-base sm:text-lg',
       sm: 'text-sm sm:text-base',
-      xs: 'text-sm',
+      xs: 'text-xs sm:text-sm',
       xxs: 'text-xs'
     }
   },
@@ -15,13 +15,13 @@ export const textVariants = cva('max-w-prose text-slate-700 dark:text-slate-300 
 })
 
 export const headingVariants = cva(
-  'text-black dark:text-white font-extrabold leading-tight tracking-tight',
+  'text-black dark:text-white font-sansWide leading-tight tracking-wide font-bold',
   {
     variants: {
       size: {
-        default: 'text-4xl md:text-5xl lg:text-6xl',
-        sm: 'text-2xl md:text-3xl lg:text-4xl',
-        lg: 'text-5xl md:text-6xl lg:text-7xl'
+        default: 'md:text-[26px] text-2xl',
+        md: 'md:text-base text-sm',
+        sm: 'text-sm'
       }
     },
     defaultVariants: {

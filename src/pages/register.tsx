@@ -18,32 +18,27 @@ import Heading from '~/components/common/Heading'
 import Input from '~/components/common/Input'
 import Text from '~/components/common/Text'
 
-interface ILoginProps {
+interface IRegisterProps {
   providers: IProvider[] | null
 }
 
-type FormLoginSchema = Pick<FormSchema, 'email' | 'password'>
-const loginFormSchema = formSchema.pick(['email', 'password'])
-
-export default function Login({ providers }: ILoginProps) {
+export default function Register({ providers }: IRegisterProps) {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<FormLoginSchema>({
-    resolver: yupResolver(loginFormSchema)
+  } = useForm<FormSchema>({
+    resolver: yupResolver(formSchema)
   })
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data)
-  })
+  const onSubmit = handleSubmit((data) => console.log(data))
 
   return (
     <div id='page-login' className='py-10'>
       <div className='container'>
         <div className='flex items-center justify-start gap-3'>
           <Link
-            href='/'
+            href='/login'
             className={cn(
               buttonVariants({ variant: 'ghost' }),
               'border border-slate-200 p-0 w-10 rounded-full'
@@ -51,17 +46,24 @@ export default function Login({ providers }: ILoginProps) {
           >
             <ArrowLeftIcon className='w-5 h-5 inline-block text-slate-700' />
           </Link>
-          <Text size='sm'>Tiếp tục mua sắm!</Text>
+          <Text size='sm'>Quay lại Đăng nhập!</Text>
         </div>
         <div className='max-w-[500px] mx-auto mt-5'>
           <Heading size='default' className='uppercase text-center'>
-            Đăng nhập
+            đăng ký
           </Heading>
           <Text size='xs' className='mt-3 mb-6'>
-            Chào mừng bạn quay lại đăng nhập. Là khách hàng cũ, bạn có quyền truy cập vào tất cả
-            thông tin đã lưu trước đây của mình.
+            Hãy tạo tài khoản của bạn và tiếp tục tận hưởng cảm giác mua sắm tuyệt vời với muôn vàn
+            ưu đãi!
           </Text>
           <form noValidate onSubmit={onSubmit}>
+            <Input
+              type='text'
+              name='fullname'
+              placeholder='Họ và tên'
+              errorMessage={errors.fullname?.message}
+              register={register}
+            />
             <Input
               type='email'
               name='email'
@@ -76,30 +78,28 @@ export default function Login({ providers }: ILoginProps) {
               errorMessage={errors.password?.message}
               register={register}
             />
-            <Link
-              href='/'
-              className={cn(
-                textVariants({ size: 'xs' }),
-                'block max-w-max ml-auto hover:underline hover:underline-offset-2'
-              )}
-            >
-              Quên mật khẩu?
-            </Link>
-            <div className='flex mt-5'>
+            <Input
+              type='password'
+              name='confirm_pw'
+              placeholder='Xác nhận Mật khẩu'
+              errorMessage={errors.confirm_pw?.message}
+              register={register}
+            />
+            <div className='flex mt-3'>
               <Button type='submit' size='lg' className='mx-auto'>
-                Đăng Nhập
+                Đăng Ký
               </Button>
             </div>
             <Text size={'xs'} className='mt-3'>
-              Bạn chưa có tài khoản?{' '}
+              Bạn đã có tài khoản?{' '}
               <Link
-                href='/register'
+                href='/login'
                 className={cn(
                   textVariants({ size: 'xs' }),
                   'hover:underline hover:underline-offset-2'
                 )}
               >
-                Đi đến đăng ký
+                Đăng nhập ngay
               </Link>
             </Text>
           </form>
@@ -135,7 +135,7 @@ export default function Login({ providers }: ILoginProps) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<ILoginProps> = async () => {
+export const getServerSideProps: GetServerSideProps<IRegisterProps> = async () => {
   const data = await getProviders()
   const providers = data && Object.values(data)
 

@@ -5,7 +5,29 @@ import { cn } from '~/libs/utils'
 export default function Document() {
   return (
     <Html lang='en' className={cn('bg-white text-slate-900 antialiased')}>
-      <Head />
+      <Head>
+        <link
+          rel='preload'
+          href='/fonts/SVN-NeuePlakRegular.otf'
+          as='font'
+          type='font/otf'
+          crossOrigin='anonymous'
+        />
+        <link
+          rel='preload'
+          href='/fonts/SVN-NeuePlakBold.otf'
+          as='font'
+          type='font/otf'
+          crossOrigin='anonymous'
+        />
+        <link
+          rel='preload'
+          href='/fonts/SVN-NeuePlakWideBold.otf'
+          as='font'
+          type='font/otf'
+          crossOrigin='anonymous'
+        />
+      </Head>
       <body>
         <Main />
         <NextScript />

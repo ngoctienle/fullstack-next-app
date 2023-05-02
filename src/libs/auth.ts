@@ -1,7 +1,7 @@
 import clientPromise from './mongodb'
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
 import { NextAuthOptions } from 'next-auth'
-import Auth0Provider from 'next-auth/providers/auth0'
+import FacebookProvider from 'next-auth/providers/facebook'
 import GoogleProvider from 'next-auth/providers/google'
 
 function getGoogleCredentials(): { clientId: string; clientSecret: string } {
@@ -18,7 +18,7 @@ function getGoogleCredentials(): { clientId: string; clientSecret: string } {
   return { clientId, clientSecret }
 }
 
-/* function getFacebookCredentials(): { clientId: string; clientSecret: string } {
+function getFacebookCredentials(): { clientId: string; clientSecret: string } {
   const clientId = process.env.FACEBOOK_ID
   const clientSecret = process.env.FACEBOOK_SECRET
   if (!clientId || clientId.length === 0) {
@@ -30,20 +30,6 @@ function getGoogleCredentials(): { clientId: string; clientSecret: string } {
   }
 
   return { clientId, clientSecret }
-} */
-
-function getOAuthCredentials(): { clientId: string; clientSecret: string } {
-  const clientId = process.env.AUTH0_CLIENT_ID
-  const clientSecret = process.env.AUTH0_CLIENT_SECRET
-  if (!clientId || clientId.length === 0) {
-    throw new Error('Missing AUTH0_CLIENT_ID')
-  }
-
-  if (!clientSecret || clientSecret.length === 0) {
-    throw new Error('Missing AUTH0_CLIENT_SECRET')
-  }
-
-  return { clientId, clientSecret }
 }
 
 export const authOptions: NextAuthOptions = {
@@ -52,18 +38,17 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt'
   },
-  /* pages: {
+  pages: {
     signIn: '/login'
-  }, */
+  },
   providers: [
     GoogleProvider({
       clientId: getGoogleCredentials().clientId,
       clientSecret: getGoogleCredentials().clientSecret
     }),
-    Auth0Provider({
-      clientId: getOAuthCredentials().clientId,
-      clientSecret: getOAuthCredentials().clientSecret,
-      issuer: process.env.AUTH0_ISSUER
+    FacebookProvider({
+      clientId: getFacebookCredentials().clientId,
+      clientSecret: getFacebookCredentials().clientSecret
     })
   ]
 }
