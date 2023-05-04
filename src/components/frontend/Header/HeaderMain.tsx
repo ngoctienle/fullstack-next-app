@@ -1,5 +1,5 @@
 import { HeartIcon, SearchIcon, ShoppingCartIcon, UserIcon } from 'lucide-react'
-import { signOut, useSession } from 'next-auth/react'
+import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 
 import { buttonVariants } from '~/configs/variants'
@@ -17,6 +17,7 @@ import Text from '~/components/common/Text'
 
 export default function HeaderMain() {
   const { data: session } = useSession()
+
   return (
     <header>
       <div className='container'>
@@ -65,7 +66,7 @@ export default function HeaderMain() {
                           height={40}
                         />
                       ) : (
-                        <div className='w-[40px] h-[40px] rounded-full'>
+                        <div className='w-[40px] h-[40px] bg-slate-100 rounded-full flex items-center justify-center'>
                           <UserIcon />
                         </div>
                       )}
@@ -114,11 +115,11 @@ export default function HeaderMain() {
                     </Text>
                     <DropdownMenuSeparator />
                     <div className='flex items-center justify-around p-2'>
-                      <Link href='/login' className={buttonVariants({ variant: 'ghost' })}>
+                      <Button onClick={() => signIn()} variant='ghost'>
                         <DropdownMenuItem className='p-0'>
                           <Text size={'xs'}>Đăng nhập</Text>
                         </DropdownMenuItem>
-                      </Link>
+                      </Button>
                       <Link href='/register' className={buttonVariants({ variant: 'outline' })}>
                         <DropdownMenuItem className='p-0 focus:bg-transparent'>
                           <Text size={'xs'} className='text-white'>

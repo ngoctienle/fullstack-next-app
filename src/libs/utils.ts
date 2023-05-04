@@ -1,3 +1,4 @@
+import axios, { AxiosError } from 'axios'
 import { ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
@@ -8,4 +9,9 @@ import { twMerge } from 'tailwind-merge'
  */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
+}
+
+export function isAxiosError<T>(error: unknown): error is AxiosError<T> {
+  // eslint-disable-next-line import/no-named-as-default-member
+  return axios.isAxiosError(error)
 }

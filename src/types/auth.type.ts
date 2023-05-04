@@ -5,3 +5,9 @@ export interface IProvider {
   signinUrl: string
   callbackUrl: string
 }
+
+export interface IBodyRegister {
+  name: string
+  email: string
+  password: string
+}

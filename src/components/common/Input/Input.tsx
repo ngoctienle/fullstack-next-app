@@ -38,8 +38,8 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>(
           <input
             ref={ref}
             className={cn(
-              'flex h-10 w-full transition-colors rounded-md border bg-transparent py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:text-slate-50',
-              errorMessage
+              'flex h-10 w-full transition-colors rounded-md border bg-transparent py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-transparent focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:text-slate-50',
+              errorMessage || errorMessage?.length === 0
                 ? 'border-error dark:border-error focus:ring-error dark:focus:ring-error'
                 : 'border-slate-300 dark:border-slate-700 focus:ring-slate-400 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900',
               classNameInput
