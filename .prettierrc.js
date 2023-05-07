@@ -6,18 +6,7 @@ const config = {
   jsxSingleQuote: true,
   trailingComma: 'none',
   arrowParens: 'always',
-  endOfLine: 'auto',
-  importOrder: [
-    '~/constants/*',
-    '~/configs/*',
-    '~/libs/*',
-    '~/hooks',
-    '~/store/*',
-    '~/types/(.)*',
-    '~/components/(.)*'
-  ],
-  importOrderSeparation: true,
-  importOrderSortSpecifiers: true
+  endOfLine: 'auto'
 }
 
 module.exports = config

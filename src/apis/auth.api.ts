@@ -1,6 +1,6 @@
-import http, { IResponseAPI } from '~/libs/http'
+import http, { IResponseAPI } from '@/libs/http'
 
-import { IBodyRegister } from '~/types/auth.type'
+import { IBodyRegister } from '@/types/auth.type'
 
 const authApi = {
   RegisterAccount(body: IBodyRegister) {

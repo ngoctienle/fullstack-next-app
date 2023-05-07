@@ -1,16 +1,18 @@
-import clientPromise from './mongodb'
+import { NextAuthOptions } from 'next-auth'
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
 import { compare } from 'bcrypt'
-import { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import FacebookProvider from 'next-auth/providers/facebook'
 import GoogleProvider from 'next-auth/providers/google'
-import db from '~/db/dbConnection'
-import User from '~/db/models/user'
+
+import clientPromise from '@/database/mongodb'
+import dbConnect from '@/database/dbConnect'
+import User from '@/database/models/user'
 
 function getGoogleCredentials(): { clientId: string; clientSecret: string } {
   const clientId = process.env.GOOGLE_ID
   const clientSecret = process.env.GOOGLE_SECRET
+
   if (!clientId || clientId.length === 0) {
     throw new Error('Missing GOOGLE_ID')
   }
@@ -35,7 +37,6 @@ function getFacebookCredentials(): { clientId: string; clientSecret: string } {
 
   return { clientId, clientSecret }
 }
-db.connectDatabase()
 
 export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise),
@@ -79,6 +80,7 @@ export const authOptions: NextAuthOptions = {
         }
       },
       async authorize(credentials) {
+        await dbConnect()
         const user = await User.findOne({
           email: credentials?.email
         })

@@ -1,12 +1,12 @@
+import '@/styles/globals.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { AppProps } from 'next/app'
 import { Toaster } from 'react-hot-toast'
-import '~/styles/globals.css'
 
-import { cn } from '~/libs/utils'
+import { cn } from '@/libs/utils'
 
-import Providers from '~/components/common/Providers'
-import MainLayout from '~/components/layouts/MainLayout'
+import Providers from '@/components/Providers'
+import MainLayout from '@/components/layouts/MainLayout'
 
 const queryClient = new QueryClient({
   defaultOptions: {

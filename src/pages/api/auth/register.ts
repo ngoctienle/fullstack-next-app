@@ -1,18 +1,18 @@
 import bcrypt from 'bcrypt'
 import { NextApiRequest, NextApiResponse } from 'next'
 import nc from 'next-connect'
-import db from '~/db/dbConnection'
-import User from '~/db/models/user'
 
-import { createActivationToken } from '~/libs/jwt'
-import { sendEmail } from '~/libs/sendEmails'
-import { validateEmail } from '~/libs/validation'
+import { validateEmail } from '@/libs/validators'
+import { createActivationToken } from '@/libs/utils'
+import dbConnect from '@/database/dbConnect'
+import User from '@/database/models/user'
+import { sendEmail } from '@/libs/sendEmails'
 
 const handler = nc<NextApiRequest, NextApiResponse>()
 
 handler.post(async (req, res) => {
   try {
-    await db.connectDatabase()
+    await dbConnect()
 
     const { name, email, password } = req.body
 
@@ -42,7 +42,6 @@ handler.post(async (req, res) => {
     const url = `${process.env.BASE_URL}/activate/${activation_token}`
     sendEmail(name, email, url, 'Activate Your Account', '')
 
-    await db.disconnectDatabase()
     res.json({ message: 'Đăng kí thành công! Vui lòng kiểm tra Email và kích hoạt tài khoản!' })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {

@@ -1,55 +1,80 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const plugin = require('tailwindcss/plugin')
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px'
+      }
+    },
     extend: {
-      fontFamily: {
-        sans: ['NeuePlak', 'sans-serif'],
-        sansBold: ['NeuePlak-Bold', 'sans-serif'],
-        sansWide: ['NeuePlak-WideBold', 'sans-serif']
-      },
-      colors: {
-        blue: 'var(--blue-color)',
-        'blue-dark': 'var(--dark-blue-color)',
-        yellow: 'var(--yellow-color)',
-        violet: 'var(--violet-color)',
-        green: 'var(--green-color)',
-        redish: 'var(--redish-color)',
-        grey: 'var(--grey-color)',
-        'light-error': 'var(--light-error-color)',
-        error: 'var(--error-color)',
-        'error-secondary': 'var(--error-secondary-color)',
-        success: 'var(--success-color)'
-      },
-      boxShadow: {
-        shadow1: 'var(--shadow-1)',
-        shadow2: 'var(--shadow-2)'
-      },
-      transitionTimingFunction: {
-        cubic: 'var(--cubic-bezier)'
-      },
       screens: {
         '@992': '992px',
         '@768': '768px',
         '@520': '520px'
+      },
+      fontFamily: {
+        base: ['var(--font-neuePlak)'],
+        wide: ['var(--font-neueWide)']
+      },
+      colors: {
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))'
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))'
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))'
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))'
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))'
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))'
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))'
+        }
+      },
+      borderRadius: {
+        lg: `var(--radius)`,
+        md: `calc(var(--radius) - 2px)`,
+        sm: 'calc(var(--radius) - 4px)'
+      },
+      keyframes: {
+        'accordion-down': {
+          from: { height: 0 },
+          to: { height: 'var(--radix-accordion-content-height)' }
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: 0 }
+        }
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out'
       }
     }
   },
-  plugins: [
-    plugin(function ({ addComponents, theme }) {
-      addComponents({
-        '.container': {
-          maxWidth: '1550px',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          paddingLeft: theme('spacing.4'),
-          paddingRight: theme('spacing.4')
-        }
-      })
-    })
-  ]
+  plugins: [require('tailwindcss-animate')]
 }
