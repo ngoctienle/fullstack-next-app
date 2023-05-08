@@ -16,8 +16,8 @@ import { IProvider } from '@/types/auth.type'
 
 import { Button } from '@/ui/button'
 import { Text } from '@/ui/text'
+import { Input } from '@/ui/input'
 import CImage from '@/ui/c-image'
-import Input from '@/ui/input'
 import Heading from '@/ui/heading'
 import AsyncButton from '@/components/AsyncButton'
 
@@ -110,7 +110,7 @@ export default function Login({ providers, callbackUrl, csrfToken }: ILoginProps
             />
             <div className='flex items-center justify-end'>
               <Button asChild variant='link' className='h-fit p-0'>
-                <Link href='/'>Quên mật khẩu?</Link>
+                <Link href='/auth/forgot-password'>Quên mật khẩu?</Link>
               </Button>
             </div>
             <div className='mt-3 flex items-center justify-center'>

@@ -1,8 +1,6 @@
 import { google } from 'googleapis'
 import nodemailer from 'nodemailer'
 
-import { activateEmailTemplate } from './template/activateEmailTemplate'
-
 const { OAuth2 } = google.auth
 const OAUTH_PLAYGROUND = 'https://developers.google.com/oauthplayground'
 
@@ -24,6 +22,7 @@ export const sendEmail = async (
   to: string,
   url: string,
   subject: string,
+  template: (params1: string, params2: string) => string,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   txt?: string
 ): Promise<void> => {
@@ -47,7 +46,7 @@ export const sendEmail = async (
     from: SENDER_EMAIL_ADDRESS,
     to: to,
     subject: subject,
-    html: activateEmailTemplate(name, url)
+    html: template(name, url)
   }
   smtpTransport.sendMail(mailOptions, (err, infos) => {
     if (err) return err

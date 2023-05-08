@@ -10,15 +10,15 @@ import { toast } from 'react-hot-toast'
 
 import authApi from '@/apis/auth.api'
 import { IResponseAPI } from '@/libs/http'
-import { FormSchema, formSchema } from '@/libs/rules'
+import { FormSchema, formSchema } from '@/libs/validators'
 import { cn, isAxiosError } from '@/libs/utils'
 
 import { IBodyRegister, IProvider } from '@/types/auth.type'
 
 import { Text } from '@/ui/text'
 import { Button } from '@/ui/button'
+import { Input } from '@/ui/input'
 import Heading from '@/ui/heading'
-import Input from '@/ui/input'
 import CImage from '@/ui/c-image'
 import AsyncButton from '@/components/AsyncButton'
 

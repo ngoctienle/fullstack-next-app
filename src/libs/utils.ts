@@ -22,3 +22,9 @@ export const createActivationToken = (payload: { id: string }) => {
     expiresIn: '2d'
   })
 }
+
+export const createResetToken = (payload: { id: string }) => {
+  return jwt.sign(payload, process.env.RESET_TOKEN_SECRET as string, {
+    expiresIn: '6h'
+  })
+}

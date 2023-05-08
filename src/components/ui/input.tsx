@@ -1,10 +1,10 @@
-import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import * as React from 'react'
-import { RegisterOptions, UseFormRegister } from 'react-hook-form'
 
 import { cn } from '@/libs/utils'
+import { RegisterOptions, UseFormRegister } from 'react-hook-form'
+import { EyeIcon, EyeOffIcon } from 'lucide-react'
 
-interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string
   classNameInput?: string
   classNameError?: string
@@ -13,7 +13,7 @@ interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rules?: RegisterOptions
 }
 
-const Input = React.forwardRef<HTMLInputElement, IInputProps>(
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     { className, classNameInput, classNameError, errorMessage, register, rules, name, ...props },
     ref
@@ -38,11 +38,11 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>(
           <input
             ref={ref}
             className={cn(
-              'flex h-10 w-full rounded-md border bg-transparent px-3 py-2 text-sm text-primary transition-colors focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+              'flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+              classNameInput,
               errorMessage || errorMessage?.length === 0
-                ? 'border border-destructive'
-                : 'border-slate-300 hover:border-primary focus:border-primary dark:border-slate-700',
-              classNameInput
+                ? 'border-destructive'
+                : 'hover:border-primary focus:border-primary disabled:hover:border-input'
             )}
             {...registerResult}
             {...props}
@@ -70,7 +70,6 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>(
     )
   }
 )
-
 Input.displayName = 'Input'
 
-export default Input
+export { Input }

@@ -11,3 +11,8 @@ export interface IBodyRegister {
   email: string
   password: string
 }
+
+export interface IBodyReset {
+  user_id: string
+  password: string
+}

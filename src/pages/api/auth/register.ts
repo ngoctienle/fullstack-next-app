@@ -1,12 +1,14 @@
-import bcrypt from 'bcrypt'
 import { NextApiRequest, NextApiResponse } from 'next'
+import bcrypt from 'bcrypt'
 import nc from 'next-connect'
 
 import { validateEmail } from '@/libs/validators'
 import { createActivationToken } from '@/libs/utils'
+import { sendEmail } from '@/libs/sendEmails'
+
 import dbConnect from '@/database/dbConnect'
 import User from '@/database/models/user'
-import { sendEmail } from '@/libs/sendEmails'
+import { activateEmailTemplate } from '@/libs/template/activateEmailTemplate'
 
 const handler = nc<NextApiRequest, NextApiResponse>()
 
@@ -40,7 +42,7 @@ handler.post(async (req, res) => {
       id: addedUser._id.toString()
     })
     const url = `${process.env.BASE_URL}/activate/${activation_token}`
-    sendEmail(name, email, url, 'Activate Your Account', '')
+    sendEmail(name, email, url, 'Activate Your Account', activateEmailTemplate, '')
 
     res.json({ message: 'Đăng kí thành công! Vui lòng kiểm tra Email và kích hoạt tài khoản!' })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
